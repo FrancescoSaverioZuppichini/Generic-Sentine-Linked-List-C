@@ -19,6 +19,12 @@ void my_print(void *node){
     printf("%i\n", *(int*)((sll_node*)node)->data);
 }
 
+void string_print(void *node){
+
+    printf("%s\n", (char*)((sll_node*)node)->data);
+
+}
+
 int main(int argc, const char * argv[]) {
     int i;
     
@@ -38,5 +44,20 @@ int main(int argc, const char * argv[]) {
     sll_print(int_sll, &my_print);
     sll_destroy(int_sll);
     
+    /* example of a string linked list */
+    sll *string_sll = sll_init(sizeof(char *));
+    char * str1 = "ciao";
+    char * str2 = "come";
+    char * str3 = "stai?";
+    
+    sll_append(string_sll, str1);
+    sll_append(string_sll, str2);
+    sll_append(string_sll, str3);
+    
+    sll_print(string_sll, &string_print);
+    
+    sll_destroy(string_sll);
+
+
     return 0;
 }
