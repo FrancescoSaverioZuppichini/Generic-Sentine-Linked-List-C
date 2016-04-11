@@ -8,45 +8,50 @@
 
 #include "sentinel_linked_list_int.h"
 
-sll * sll_init(){
+sll * sll_init(int size_of_data){
     
     sll *new_sll = malloc(sizeof(sll));
     sll_node *sentinel_node = malloc(sizeof(sll_node));
-    
+
     if(!new_sll || !sentinel_node)
         return NULL;
-    
+   
+    new_sll->data_size = size_of_data;
     new_sll->head = sentinel_node;
     new_sll->tail = sentinel_node;
     
     return new_sll;
 }
 
-void sll_append(sll * this, int el){
+void sll_append(sll * this, void *el){
     sll_node *new_node;
     
     new_node = malloc(sizeof(sll_node));
     
     if(!new_node)
         return;
-    
-    new_node->data = el;
+    /* allocate the memory for data */
+    new_node->data = malloc(this->data_size);
+    /* copy el in data */
+    memcpy(new_node->data, el, this->data_size);
+    /* update the pointers references */
     this->tail->next = new_node;
     new_node->prev = this->tail;
     this->tail = new_node;
     this->tail->next = this->head;
     this->head->prev = new_node;
-    
     this->size++;
     
 }
 
-sll_node * sll_remove(sll * this, int el){
+sll_node * sll_remove(sll * this, void*el){
     sll_node *to_remove;
-    
+    /* find the element */
     to_remove = sll_get(this, el);
+    
     if(!to_remove)
         return NULL;
+    /* update the pointers references */
     to_remove->prev->next = to_remove->next;
     to_remove->next->prev = to_remove->prev;
     
@@ -72,17 +77,9 @@ sll_node * sll_pop(sll *this){
 }
 
 
-void inner_print(void * node_to_print){
-    
-    printf("%i\n", ((sll_node*)node_to_print)->data);
-}
-
 void sll_print(const sll * this, void (*custom_print)(void*)){
     
-    if(!custom_print)
-        sll_map(this,inner_print);
-    else    
-        sll_map(this, custom_print);
+    sll_map(this, custom_print);
 }
 
 void sll_map(const sll * this, void (*f)(void *)){
@@ -93,7 +90,7 @@ void sll_map(const sll * this, void (*f)(void *)){
     }
 }
 
-sll_node *sll_get(const sll * this, int el){
+sll_node *sll_get(const sll * this, void *el){
     sll_node * pos;
     
     for(pos = this->head->next; pos != this->head; pos = pos->next){
@@ -106,10 +103,14 @@ sll_node *sll_get(const sll * this, int el){
     
     return NULL;
 }
-
+void inner_destroy(void *node){
+    sll_node *curr = (sll_node*)node;
+    free(curr->data);
+    free(curr);
+}
 
 void sll_destroy(const sll * this){
     
-    sll_map(this,free);
+    sll_map(this,&inner_destroy);
     
 }
