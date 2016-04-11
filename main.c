@@ -10,8 +10,7 @@
 #include "sentinel_linked_list_int.h"
 
 void double_data(void *node){
-    sll_node *curr = (sll_node*) node;
-    *(int*) curr->data *= 2;
+    *get_data(node,int) *=2;
 }
 
 void my_print(void *node){
