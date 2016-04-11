@@ -30,6 +30,7 @@ struct sentinel_linked_list_node{
 };
 
 struct sentinel_linked_list{
+    
     long size;
     int data_size;
     struct sentinel_linked_list_node * head;

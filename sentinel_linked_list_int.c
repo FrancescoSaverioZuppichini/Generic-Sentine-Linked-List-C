@@ -81,11 +81,9 @@ sll_node * sll_pop_back(sll *this){
         return NULL;
     
     to_pop = this->tail;
-    
     /* update pointers */
     to_pop->next->prev = to_pop->prev;
     to_pop->prev->next = this->head;
-    
     this->tail = to_pop->prev;
     
     this->size--;
@@ -114,10 +112,10 @@ sll_node *sll_get(const sll * this, void *el){
             break;
     }
     
-    if(pos != this->head)
-        return pos;
+    if(pos == this->head)
+        return NULL;
     
-    return NULL;
+    return pos;
 }
 /* This function is collect by sll_destroy it's porpuse 
  is to erase all data from a given node */
