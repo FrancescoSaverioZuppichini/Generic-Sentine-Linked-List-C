@@ -8,6 +8,8 @@
 
 #ifndef sentinel_linked_list_int_h
 #define sentinel_linked_list_int_h
+#define EXPLICIT_CAST(pointer,type)((type *)pointer)
+#define get_data(node,type)((type*)(EXPLICIT_CAST(node,sll_node))->data)
 
 
 #include <stdio.h>
@@ -43,7 +45,9 @@ extern sll_node *sll_get(const sll *, void * );
 /* Remove and return the node with the given element */
 extern sll_node* sll_remove(sll *, void * );
 /* Remove and return the last node in the list*/
-extern sll_node * sll_pop(sll *);
+extern sll_node * sll_pop_back(sll *);
+/* Remove and return the last first in the list*/
+extern sll_node * sll_pop_front(sll *);
 /* Map a function to every node in the list */
 extern void sll_map(const sll *, void (*)(void *));
 /* Print all the list */

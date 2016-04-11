@@ -37,14 +37,16 @@ void sll_append(sll * this, void *el){
     /* update the pointers references */
     this->tail->next = new_node;
     new_node->prev = this->tail;
+    /* append the new node */
     this->tail = new_node;
     this->tail->next = this->head;
     this->head->prev = new_node;
+    
     this->size++;
     
 }
 
-sll_node * sll_remove(sll * this, void*el){
+sll_node * sll_remove(sll * this, void *el){
     sll_node *to_remove;
     /* find the element */
     to_remove = sll_get(this, el);
@@ -58,7 +60,21 @@ sll_node * sll_remove(sll * this, void*el){
     return to_remove;
 }
 
-sll_node * sll_pop(sll *this){
+sll_node * sll_pop_front(sll *this){
+    sll_node *to_pop;
+    
+    if(this->size == 0)
+        return NULL;
+    to_pop = this->head->next;
+    /* update pointers */
+    this->head->next = to_pop->next;
+    to_pop->next->prev = this->head;
+    
+    this->size--;
+    return to_pop;
+}
+
+sll_node * sll_pop_back(sll *this){
     sll_node *to_pop;
     
     if(this->size == 0)
@@ -66,6 +82,7 @@ sll_node * sll_pop(sll *this){
     
     to_pop = this->tail;
     
+    /* update pointers */
     to_pop->next->prev = to_pop->prev;
     to_pop->prev->next = this->head;
     
@@ -76,17 +93,16 @@ sll_node * sll_pop(sll *this){
     return to_pop;
 }
 
-
 void sll_print(const sll * this, void (*custom_print)(void*)){
     
     sll_map(this, custom_print);
 }
-
-void sll_map(const sll * this, void (*f)(void *)){
+/* This function performs a action on every node */
+void sll_map(const sll * this, void (*action)(void *)){
     sll_node * pos;
-    
+    /* call action on every node */
     for(pos = this->head->next; pos != this->head; pos = pos->next){
-        f(pos);
+        action(pos);
     }
 }
 
@@ -103,14 +119,18 @@ sll_node *sll_get(const sll * this, void *el){
     
     return NULL;
 }
+/* This function is collect by sll_destroy it's porpuse 
+ is to erase all data from a given node */
 void inner_destroy(void *node){
     sll_node *curr = (sll_node*)node;
+    /* byre bye curr */
     free(curr->data);
     free(curr);
 }
-
+/* This function free al memory of a given list */
 void sll_destroy(const sll * this){
-    
-    sll_map(this,&inner_destroy);
+    if(this){
+        sll_map(this,&inner_destroy);
+    }
     
 }

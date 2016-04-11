@@ -16,12 +16,12 @@ void double_data(void *node){
 
 void my_print(void *node){
 
-    printf("%i\n", *(int*)((sll_node*)node)->data);
+    printf("%i\n",*get_data(node,int));
 }
 
 void string_print(void *node){
-
-    printf("%s\n", (char*)((sll_node*)node)->data);
+    
+    printf("%s\n",get_data(node,char));
 
 }
 
@@ -38,7 +38,7 @@ int main(int argc, const char * argv[]) {
     sll_map(int_sll,&double_data);
     sll_print(int_sll, &my_print);
     while(i>0){
-        sll_pop(int_sll);
+        sll_pop_front(int_sll);
         i--;
     }
     sll_print(int_sll, &my_print);
