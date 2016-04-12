@@ -100,4 +100,6 @@ Assume we have a node with a *int* data, we can print it like that:
 printf("%i\n",*get_data(node,int));
 ```
 
+####Example file
+You can find an example in *main.c*
 
