@@ -34,6 +34,7 @@ int main(int argc, const char * argv[]) {
         sll_append(int_sll, &i);
         i++;
     }
+    
     sll_map(int_sll,&double_data);
     sll_print(int_sll, &my_print);
     while(i>0){
