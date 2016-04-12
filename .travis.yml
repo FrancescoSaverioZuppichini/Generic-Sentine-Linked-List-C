@@ -1,4 +1,4 @@
 language: c
 install: true
 compiler: gcc
-script: gcc fourinarow.c game.c -o fourinarow 
+script: gcc main.c sentinel_linked_list_int.c -o sentinel_linked_list_int.c
