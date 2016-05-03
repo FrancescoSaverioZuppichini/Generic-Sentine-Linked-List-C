@@ -98,6 +98,8 @@ void sll_print(const sll * this, void (*custom_print)(void*)){
 /* This function performs a action on every node */
 void sll_map(const sll * this, void (*action)(void *)){
     sll_node * pos;
+    if(!this->head->next)
+        return;
     /* call action on every node */
     for(pos = this->head->next; pos != this->head; pos = pos->next){
         action(pos);
