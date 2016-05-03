@@ -121,6 +121,8 @@ sll_node *sll_get(const sll * this, void *el){
  is to erase all data from a given node */
 void inner_destroy(void *node){
     sll_node *curr = (sll_node*)node;
+    if(!curr->data)
+        return;
     /* byre bye curr */
     free(curr->data);
     free(curr);

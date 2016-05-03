@@ -11,7 +11,7 @@
 #define EXPLICIT_CAST(pointer,type)((type *)(pointer))
 /* This macro needs the current node and the type of your data.
  It returns the pointer to the casted data */
-#define get_data(node,type)((type*)(EXPLICIT_CAST(node,sll_node))->data)
+#define sll_get_data(node,type)((type*)(EXPLICIT_CAST(node,sll_node))->data)
 
 
 #include <stdio.h>
