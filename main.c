@@ -10,17 +10,17 @@
 #include "sentinel_linked_list_int.h"
 
 void double_data(void *node){
-    *get_data(node,int) *=2;
+    *sll_get_data(node,int) *=2;
 }
 
 void my_print(void *node){
 
-    printf("%i\n",*get_data(node,int));
+    printf("%i\n",*sll_get_data(node,int));
 }
 
 void string_print(void *node){
     
-    printf("%s\n",get_data(node,char));
+    printf("%s\n",sll_get_data(node,char));
 
 }
 
