@@ -23,13 +23,13 @@ sll * sll_init(int size_of_data){
     return new_sll;
 }
 
-void sll_append(sll * this, void *el){
+sll_node * sll_append(sll * this, void *el){
     sll_node *new_node;
     
     new_node = malloc(sizeof(sll_node));
     
     if(!new_node)
-        return;
+        return NULL;
     /* allocate the memory for data */
     new_node->data = malloc(this->data_size);
     /* copy el in data */
@@ -43,6 +43,8 @@ void sll_append(sll * this, void *el){
     this->head->prev = new_node;
     
     this->size++;
+    
+    return new_node;
     
 }
 
@@ -98,7 +100,8 @@ void sll_print(const sll * this, void (*custom_print)(void*)){
 /* This function performs a action on every node */
 void sll_map(const sll * this, void (*action)(void *)){
     sll_node * pos;
-    if(!this->head->next)
+    /* list is empty */
+    if(this->size == 0)
         return;
     /* call action on every node */
     for(pos = this->head->next; pos != this->head; pos = pos->next){

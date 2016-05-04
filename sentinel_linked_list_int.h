@@ -42,7 +42,7 @@ extern sll *sll_init(int);
 /* Destroy the given sentinel_linked_list */
 extern void sll_destroy(const sll *);
 /* Append a element to given sentinel_linked_list */
-extern void sll_append(sll *, void * el);
+extern sll_node * sll_append(sll *, void * el);
 /* Return the node with the given element */
 extern sll_node *sll_get(const sll *, void * );
 /* Remove and return the node with the given element */
