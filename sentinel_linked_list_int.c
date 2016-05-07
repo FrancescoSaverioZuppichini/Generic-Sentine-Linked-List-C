@@ -19,6 +19,9 @@ sll * sll_init(int size_of_data){
     new_sll->data_size = size_of_data;
     new_sll->head = sentinel_node;
     new_sll->tail = sentinel_node;
+    sentinel_node->next = sentinel_node;
+    sentinel_node->prev = sentinel_node;
+
     
     return new_sll;
 }
