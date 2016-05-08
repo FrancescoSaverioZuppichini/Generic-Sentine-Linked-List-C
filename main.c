@@ -7,7 +7,7 @@
 //
 
 #include <stdio.h>
-#include "sentinel_linked_list_int.h"
+#include "sentinel_linked_list.h"
 
 void double_data(void *node){
     *sll_get_data(node,int) *=2;
