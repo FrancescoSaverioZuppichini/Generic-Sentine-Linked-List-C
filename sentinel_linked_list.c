@@ -6,7 +6,7 @@
 //  Copyright © 2016 Francesco Saverio Zuppichini. All rights reserved.
 //
 
-#include "sentinel_linked_list_int.h"
+#include "sentinel_linked_list.h"
 
 sll * sll_init(int size_of_data){
     

@@ -1,4 +1,4 @@
 language: c
 install: true
 compiler: gcc
-script: gcc main.c sentinel_linked_list_int.c -o sentinel_linked_list_int.c
+script: gcc main.c sentinel_linked_list.c -o sentinel_linked_list.c

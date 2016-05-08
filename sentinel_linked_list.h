@@ -6,8 +6,8 @@
 //  Copyright © 2016 Francesco Saverio Zuppichini. All rights reserved.
 //
 
-#ifndef sentinel_linked_list_int_h
-#define sentinel_linked_list_int_h
+#ifndef sentinel_linked_list_h
+#define sentinel_linked_list_h
 #define EXPLICIT_CAST(pointer,type)((type *)(pointer))
 /* This macro needs the current node and the type of your data.
  It returns the pointer to the casted data */
@@ -22,15 +22,15 @@ typedef struct sentinel_linked_list sll;
 typedef struct sentinel_linked_list_node sll_node;
 
 struct sentinel_linked_list_node{
-    
+
     void *data;
     struct sentinel_linked_list_node * next;
     struct sentinel_linked_list_node * prev;
-    
+
 };
 
 struct sentinel_linked_list{
-    
+
     long size;
     int data_size;
     struct sentinel_linked_list_node * head;
@@ -56,4 +56,4 @@ extern void sll_map(const sll *, void (*)(void *));
 /* Print all the list */
 extern void sll_print(const sll *,void (*)(void*));
 
-#endif /* sentinel_linked_list_int_h */
+#endif /* sentinel_linked_list_h */
